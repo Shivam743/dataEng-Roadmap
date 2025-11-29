@@ -34,15 +34,15 @@ const Analytics: React.FC<AnalyticsProps> = ({ roadmap, completedTaskIds, logs }
   return (
     <div className="space-y-8">
       <header>
-        <h2 className="text-3xl font-bold text-slate-800">Analytics</h2>
-        <p className="text-slate-500 mt-2">Visualizing your progress and study habits.</p>
+        <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-100">Analytics</h2>
+        <p className="text-slate-500 dark:text-slate-400 mt-2">Visualizing your progress and study habits.</p>
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
         {/* Skill Proficiency */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
-          <h3 className="text-lg font-bold text-slate-800 mb-6">Skill Proficiency</h3>
+        <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+          <h3 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-6">Skill Proficiency</h3>
           <div className="h-80 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
@@ -50,10 +50,10 @@ const Analytics: React.FC<AnalyticsProps> = ({ roadmap, completedTaskIds, logs }
                 data={skillData}
                 margin={{ top: 5, right: 30, left: 40, bottom: 5 }}
               >
-                <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} />
-                <XAxis type="number" domain={[0, 100]} />
-                <YAxis dataKey="name" type="category" width={80} tick={{fontSize: 12}} />
-                <Tooltip cursor={{fill: 'transparent'}} />
+                <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#334155" />
+                <XAxis type="number" domain={[0, 100]} tick={{ fill: '#94a3b8' }} />
+                <YAxis dataKey="name" type="category" width={80} tick={{fontSize: 12, fill: '#94a3b8'}} />
+                <Tooltip cursor={{fill: 'transparent'}} contentStyle={{ backgroundColor: '#1e293b', borderColor: '#334155', color: '#f8fafc' }} />
                 <Bar dataKey="percentage" fill="#4f46e5" radius={[0, 4, 4, 0]} name="Completion %" />
               </BarChart>
             </ResponsiveContainer>
@@ -61,23 +61,23 @@ const Analytics: React.FC<AnalyticsProps> = ({ roadmap, completedTaskIds, logs }
         </div>
 
         {/* Study Habits */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
-          <h3 className="text-lg font-bold text-slate-800 mb-6">Study Consistency (Recent)</h3>
+        <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+          <h3 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-6">Study Consistency (Recent)</h3>
            {studyData.length > 0 ? (
             <div className="h-80 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={studyData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                    <XAxis dataKey="date" tick={{ fill: '#94a3b8' }} />
+                    <YAxis tick={{ fill: '#94a3b8' }} />
+                    <Tooltip contentStyle={{ backgroundColor: '#1e293b', borderColor: '#334155', color: '#f8fafc' }} />
+                    <Legend wrapperStyle={{ color: '#94a3b8' }} />
                     <Line type="monotone" dataKey="hours" stroke="#0ea5e9" strokeWidth={2} activeDot={{ r: 8 }} name="Hours Studied" />
                 </LineChart>
                 </ResponsiveContainer>
             </div>
            ) : (
-               <div className="h-80 w-full flex items-center justify-center text-slate-400">
+               <div className="h-80 w-full flex items-center justify-center text-slate-400 dark:text-slate-500">
                    Not enough data logs yet.
                </div>
            )}
@@ -85,26 +85,26 @@ const Analytics: React.FC<AnalyticsProps> = ({ roadmap, completedTaskIds, logs }
       </div>
 
         {/* Detailed Breakdown Table */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
-            <h3 className="text-lg font-bold text-slate-800 mb-4">Detailed Breakdown</h3>
+        <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+            <h3 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4">Detailed Breakdown</h3>
             <div className="overflow-x-auto">
                 <table className="min-w-full text-left text-sm">
                     <thead>
-                        <tr className="border-b border-slate-200">
-                            <th className="px-4 py-2 font-medium text-slate-500">Category</th>
-                            <th className="px-4 py-2 font-medium text-slate-500">Tasks Completed</th>
-                            <th className="px-4 py-2 font-medium text-slate-500">Total Tasks</th>
-                            <th className="px-4 py-2 font-medium text-slate-500">Status</th>
+                        <tr className="border-b border-slate-200 dark:border-slate-700">
+                            <th className="px-4 py-2 font-medium text-slate-500 dark:text-slate-400">Category</th>
+                            <th className="px-4 py-2 font-medium text-slate-500 dark:text-slate-400">Tasks Completed</th>
+                            <th className="px-4 py-2 font-medium text-slate-500 dark:text-slate-400">Total Tasks</th>
+                            <th className="px-4 py-2 font-medium text-slate-500 dark:text-slate-400">Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         {skillData.map((row) => (
-                            <tr key={row.name} className="border-b border-slate-50 last:border-0 hover:bg-slate-50">
-                                <td className="px-4 py-3 font-medium text-slate-700">{row.name}</td>
-                                <td className="px-4 py-3 text-slate-600">{row.completed}</td>
-                                <td className="px-4 py-3 text-slate-600">{row.total}</td>
+                            <tr key={row.name} className="border-b border-slate-50 dark:border-slate-700 last:border-0 hover:bg-slate-50 dark:hover:bg-slate-700/50">
+                                <td className="px-4 py-3 font-medium text-slate-700 dark:text-slate-300">{row.name}</td>
+                                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{row.completed}</td>
+                                <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{row.total}</td>
                                 <td className="px-4 py-3">
-                                    <div className="w-full bg-slate-200 rounded-full h-2.5 max-w-[100px]">
+                                    <div className="w-full bg-slate-200 dark:bg-slate-600 rounded-full h-2.5 max-w-[100px]">
                                         <div 
                                             className={`h-2.5 rounded-full ${row.percentage === 100 ? 'bg-green-500' : 'bg-blue-600'}`} 
                                             style={{ width: `${row.percentage}%` }}

@@ -17,10 +17,10 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTab }) =>
   ];
 
   return (
-    <div className="flex h-screen bg-slate-50 overflow-hidden">
+    <div className="flex h-screen bg-slate-50 dark:bg-slate-950 overflow-hidden">
       {/* Sidebar */}
-      <aside className="w-64 bg-slate-900 text-white flex-shrink-0 hidden md:flex flex-col">
-        <div className="p-6 border-b border-slate-700">
+      <aside className="w-64 bg-slate-900 text-slate-100 flex-shrink-0 hidden md:flex flex-col border-r border-slate-800">
+        <div className="p-6 border-b border-slate-800">
           <h1 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
             DE Tracker
           </h1>
@@ -52,11 +52,11 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTab }) =>
       </aside>
 
       {/* Mobile Nav Header */}
-      <div className="md:hidden fixed top-0 w-full bg-slate-900 text-white z-50 p-4 flex justify-between items-center">
-         <span className="font-bold">DE Tracker</span>
-         <div className="flex space-x-4">
-             {navItems.slice(0, 4).map(item => (
-                 <button key={item.id} onClick={() => setActiveTab(item.id)} className={activeTab === item.id ? 'text-blue-400' : 'text-slate-400'}>
+      <div className="md:hidden fixed top-0 w-full bg-slate-900 text-slate-100 z-50 p-4 flex justify-between items-center shadow-md">
+         <span className="font-bold text-lg bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">DE Tracker</span>
+         <div className="flex space-x-5 overflow-x-auto no-scrollbar">
+             {navItems.map(item => (
+                 <button key={item.id} onClick={() => setActiveTab(item.id)} className={`flex-shrink-0 transition-colors ${activeTab === item.id ? 'text-blue-400' : 'text-slate-400 hover:text-slate-200'}`}>
                      {item.icon}
                  </button>
              ))}
