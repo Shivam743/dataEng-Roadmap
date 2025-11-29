@@ -36,57 +36,57 @@ const Dashboard: React.FC<DashboardProps> = ({ roadmap, completedTaskIds, logs }
   return (
     <div className="space-y-6">
       <header>
-        <h2 className="text-3xl font-bold text-slate-800">Welcome Back, Engineer</h2>
-        <p className="text-slate-500 mt-2">Track your journey to becoming a Data Engineer.</p>
+        <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-100">Welcome Back, Engineer</h2>
+        <p className="text-slate-500 dark:text-slate-400 mt-2">Track your journey to becoming a Data Engineer.</p>
       </header>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex items-center space-x-4">
-          <div className="p-3 bg-blue-100 text-blue-600 rounded-full">
+        <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center space-x-4">
+          <div className="p-3 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full">
             <CheckCircle size={24} />
           </div>
           <div>
-            <p className="text-sm text-slate-500 font-medium">Completion</p>
-            <h3 className="text-2xl font-bold text-slate-800">{progressPercent}%</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Completion</p>
+            <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-100">{progressPercent}%</h3>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex items-center space-x-4">
-          <div className="p-3 bg-green-100 text-green-600 rounded-full">
+        <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center space-x-4">
+          <div className="p-3 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full">
             <Clock size={24} />
           </div>
           <div>
-            <p className="text-sm text-slate-500 font-medium">Hours Studied</p>
-            <h3 className="text-2xl font-bold text-slate-800">{totalHours}h</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Hours Studied</p>
+            <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-100">{totalHours}h</h3>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex items-center space-x-4">
-          <div className="p-3 bg-purple-100 text-purple-600 rounded-full">
+        <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center space-x-4">
+          <div className="p-3 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full">
             <Calendar size={24} />
           </div>
           <div>
-            <p className="text-sm text-slate-500 font-medium">Study Sessions</p>
-            <h3 className="text-2xl font-bold text-slate-800">{logs.length}</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Study Sessions</p>
+            <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-100">{logs.length}</h3>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 flex items-center space-x-4">
-          <div className="p-3 bg-orange-100 text-orange-600 rounded-full">
+        <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center space-x-4">
+          <div className="p-3 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-full">
             <TrendingUp size={24} />
           </div>
           <div>
-            <p className="text-sm text-slate-500 font-medium">Current Goal</p>
-            <h3 className="text-sm font-bold text-slate-800 truncate max-w-[120px]" title={currentMonth.goal}>{currentMonth.goal}</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Current Goal</p>
+            <h3 className="text-sm font-bold text-slate-800 dark:text-slate-100 truncate max-w-[120px]" title={currentMonth.goal}>{currentMonth.goal}</h3>
           </div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Progress Chart */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 col-span-1">
-          <h3 className="text-lg font-semibold text-slate-800 mb-4">Overall Progress</h3>
+        <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 col-span-1">
+          <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-4">Overall Progress</h3>
           <div className="h-64 relative">
              <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
@@ -99,12 +99,13 @@ const Dashboard: React.FC<DashboardProps> = ({ roadmap, completedTaskIds, logs }
                     fill="#8884d8"
                     paddingAngle={5}
                     dataKey="value"
+                    stroke="none"
                   >
                     {pieData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
-                  <Tooltip />
+                  <Tooltip contentStyle={{ backgroundColor: '#1e293b', borderColor: '#334155', color: '#f8fafc' }} itemStyle={{ color: '#f8fafc' }} />
                 </PieChart>
              </ResponsiveContainer>
              <div className="absolute inset-0 flex items-center justify-center flex-col pointer-events-none">
@@ -115,17 +116,17 @@ const Dashboard: React.FC<DashboardProps> = ({ roadmap, completedTaskIds, logs }
         </div>
 
         {/* Current Focus */}
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 col-span-1 lg:col-span-2">
-            <h3 className="text-lg font-semibold text-slate-800 mb-4">Current Focus: {currentMonth.title}</h3>
+        <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 col-span-1 lg:col-span-2">
+            <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-4">Current Focus: {currentMonth.title}</h3>
             <div className="space-y-4">
                 {currentMonth.weeks.slice(0, 2).map(week => (
-                    <div key={week.id} className="border border-slate-200 rounded-lg p-4">
-                        <h4 className="font-medium text-slate-700 mb-2">{week.title}</h4>
+                    <div key={week.id} className="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+                        <h4 className="font-medium text-slate-700 dark:text-slate-300 mb-2">{week.title}</h4>
                         <div className="space-y-2">
                             {week.topics.flatMap(t => t.tasks).slice(0, 3).map(task => (
                                 <div key={task.id} className="flex items-center space-x-2">
-                                    <div className={`w-4 h-4 rounded-full border ${completedTaskIds.includes(task.id) ? 'bg-blue-500 border-blue-500' : 'border-slate-300'}`}></div>
-                                    <span className={`text-sm ${completedTaskIds.includes(task.id) ? 'text-slate-400 line-through' : 'text-slate-600'}`}>{task.title}</span>
+                                    <div className={`w-4 h-4 rounded-full border ${completedTaskIds.includes(task.id) ? 'bg-blue-500 border-blue-500' : 'border-slate-300 dark:border-slate-600'}`}></div>
+                                    <span className={`text-sm ${completedTaskIds.includes(task.id) ? 'text-slate-400 line-through' : 'text-slate-600 dark:text-slate-400'}`}>{task.title}</span>
                                 </div>
                             ))}
                             {week.topics.flatMap(t => t.tasks).length > 3 && (
